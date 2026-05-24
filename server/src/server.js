@@ -30,16 +30,20 @@ app.use("/api/orders", orderRouter)
 app.use("/api/payment", paymentRouter)
 app.use("/api/analytics", analyticsRouter)
 
-if(process.env.NODE_ENV === "production"){
-    app.use(express.static(path.join(__dirname, '../client/build')))
-    app.use((req, res) => {
-        res.sendFile(path.resolve(__dirname, "../client/build/index.html"))
-    })
-} else {
-    app.get("/", (req, res) => {
-        res.send('urbanVastra API is running in development mode....')
-    })
-}
+// if(process.env.NODE_ENV === "production"){
+//     app.use(express.static(path.join(__dirname, '../client/build')))
+//     app.use((req, res) => {
+//         res.sendFile(path.resolve(__dirname, "../client/build/index.html"))
+//     })
+// } else {
+//     app.get("/", (req, res) => {
+//         res.send('urbanVastra API is running in development mode....')
+//     })
+// }
+
+app.get("/", (req, res) => {
+    res.send("UrbanVastra API is running...")
+})
 
 const PORT = process.env.PORT || 5000
 
