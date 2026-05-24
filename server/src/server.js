@@ -14,7 +14,16 @@ app.use(express.json())
 app.use(cookiePasrser())
 app.use(express.urlencoded({extended: true}))
 app.use(cors({
-    origin: ["http://localhost:5173", process.env.CLIENT_URL],
+    origin: function(origin, callback){
+        if(!origin) return callback(null, true)
+            if(
+                origin === "http://localhost:5173" ||
+                origin.endsWith(".vercel.app")
+            ){
+                return callback(null, true)
+            }
+            callback(new Error("Not allowed by CORS"))
+    },
     credentials: true
 }))
 
