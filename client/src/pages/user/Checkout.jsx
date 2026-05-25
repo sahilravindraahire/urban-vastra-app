@@ -62,7 +62,7 @@ function Checkout() {
             paymentId: "COD",
         }
         console.log("Placing COD order:", orderData)  
-        const result = await dispatch(placeOrder(orderData))
+        const result = dispatch(placeOrder(orderData))
         console.log("Order result:", result)         
         if (placeOrder.fulfilled.match(result)) {
             emptyCart()
