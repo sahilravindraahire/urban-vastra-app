@@ -7,6 +7,7 @@ import { useAuth } from "../../hooks/index.js";
 import { GoldButton, InputField } from "../../components/common/index.jsx";
 import useForm from "../../hooks/useForm.js";
 import {clearError, setOtpEmail} from "../../store/slices/authSlice.js"
+import {loadUserAddress, loadUserCart} from "../../store/slices/cartSlice.js"
 
 function Register() {
   const dispatch = useDispatch();
@@ -43,6 +44,8 @@ function Register() {
     e.preventDefault();
     const result = await dispatch(verifyOtp({ email: otpEmail, otp: otpValue }));
     if (verifyOtp.fulfilled.match(result)) {
+      dispatch(loadUserAddress())
+      dispatch(loadUserCart())
       toast.success("Email verified! Welcome to UrbanVastra.");
       navigate("/");
     }
