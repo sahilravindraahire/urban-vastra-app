@@ -51,7 +51,7 @@ export const createProduct = asyncHandler(async (req, res) => {
       imagePublicId = uploadResponse.public_id;
       console.log("Cloudinary upload success:", imageUrl);
     } catch (cloudinaryError) {
-      console.log("Cloudinary error:", cloudinaryError.message); // ← this will tell us exactly what's wrong
+      console.log("Cloudinary error:", cloudinaryError.message); 
       throw new apiError(
         500,
         "cloudinary upload failed: " + cloudinaryError.message,

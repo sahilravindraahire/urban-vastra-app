@@ -46,7 +46,7 @@ function App() {
           }/>
         </Routes>
       </main>
-      <footer/>
+      <Footer/>
       <Toaster 
       position="top-right"
       toastOptions={{
