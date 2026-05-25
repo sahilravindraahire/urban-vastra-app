@@ -88,7 +88,7 @@ function Checkout() {
       toast.error("failed to place order");
     }
     setLoading(false);
-  };
+  ;
 
   const handleOnlinePayment = async () => {
     setLoading(true);
@@ -367,5 +367,6 @@ function Checkout() {
     </div>
   );
 }
+
 
 export default Checkout;
