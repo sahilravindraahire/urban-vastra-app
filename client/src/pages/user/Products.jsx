@@ -25,7 +25,7 @@ function Products() {
 
     const filtered = products.filter((p) => {
         const matchCat = selectedCat === "All" || p.category.toLowerCase() === selectedCat.toLowerCase()
-        const matchSearch = p.name.toLowerCase().includes(search.toLocaleLowerCase())
+        const matchSearch = p.name.toLowerCase().includes(search.toLowerCase())
         return matchCat && matchSearch
     })
     .sort((a, b) => {
