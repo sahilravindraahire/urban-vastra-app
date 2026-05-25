@@ -53,17 +53,32 @@ function Checkout() {
   };
 
   const handleCOD = async () => {
-    setLoading(true);
-    const orderData = {
-      items: items.map((i) => ({
-        productId: i._id,
-        qty: i.qty,
-        price: i.price,
-      })),
-      totalAmount: total,
-      address: addr,
-      paymentId: "COD",
-    };
+    setLoading(true)
+    try {
+        const orderData = {
+            items: items.map((i) => ({ productId: i._id, qty: i.qty, price: i.price })),
+            totalAmount: total,
+            address: addr,
+            paymentId: "COD",
+        }
+        console.log("Placing COD order:", orderData)  
+        const result = await dispatch(placeOrder(orderData))
+        console.log("Order result:", result)         
+        if (placeOrder.fulfilled.match(result)) {
+            emptyCart()
+            toast.success("Order placed! Pay on delivery.")
+            navigate("/orders")
+        } else {
+            toast.error(result.payload || "Failed to place order")
+        }
+    } catch(err) {
+        console.error("COD error:", err)
+        toast.error("Something went wrong")
+    } finally {
+        setLoading(false)   // ← always runs, even on error
+    }
+}
+
     const result = await dispatch(placeOrder(orderData));
     if (placeOrder.fulfilled.match(result)) {
       emptyCart();
