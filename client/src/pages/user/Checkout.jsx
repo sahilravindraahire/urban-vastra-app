@@ -115,17 +115,6 @@ const handleCOD = async () => {
   }
 };
 
-    const result = await dispatch(placeOrder(orderData));
-    if (placeOrder.fulfilled.match(result)) {
-      emptyCart();
-      toast.success("Order placed! Pay on delivery.");
-      navigate("/orders");
-    } else {
-      toast.error("failed to place order");
-    }
-    setLoading(false);
-  ;
-
   const handleOnlinePayment = async () => {
     setLoading(true);
     await initialPayment({
